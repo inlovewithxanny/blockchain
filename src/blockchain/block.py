@@ -38,12 +38,9 @@ class Block:
     def as_dict(self):
         _dict = self.__dict__.copy()
         _dict["transactions"] = [
-            transaction.__dict__ for transaction in self.transactions
+            transaction.as_dict for transaction in self.transactions
         ]
         _dict["merkle_root_hash"] = self.merkle_root_hash
         _dict["hash"] = self.hash
         _dict["is_genesis"] = self.is_genesis
         return _dict
-
-    def __repr__(self):
-        return f"<Block version={self.block_version} previous_block_hash={self.previous_block_hash} hash={self.hash} timestamp={self.timestamp} merkle_root={self.merkle_root_hash} is_genesis={self.is_genesis} transactions={self.transactions}>"

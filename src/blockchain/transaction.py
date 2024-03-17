@@ -14,3 +14,9 @@ class Transaction:
     def hash(self):
         string = f"{self.sender_name}{self.reciever_name}{self.amount}{self.timestamp}"
         return get_zero_hash(string)
+
+    @property
+    def as_dict(self):
+        _dict = self.__dict__.copy()
+        _dict["hash"] = self.hash
+        return _dict
