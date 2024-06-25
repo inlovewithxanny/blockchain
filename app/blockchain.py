@@ -39,7 +39,7 @@ class Blockchain:
             })
         return chain
 
-    async def new_block(self, proof, previous_hash: str = None):
+    async def new_block(self, proof: int, previous_hash: str = None):
         chain = await self.load_chain()
         last_block = chain[-1] if chain else None
 
