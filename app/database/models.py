@@ -39,10 +39,10 @@ class Transaction(Base):
     __tablename__ = "transactions"
 
     hash: Mapped[str] = mapped_column(VARCHAR(64), primary_key=True)
-    block_id: Mapped[int] = mapped_column(ForeignKey("blocks.id"))
-    sender: Mapped[str] = mapped_column(VARCHAR(128))
-    recipient: Mapped[str] = mapped_column(VARCHAR(128))
-    amount: Mapped[float] = mapped_column(Float())
+    block_id: Mapped[int] = mapped_column(ForeignKey("blocks.id"), nullable=False)
+    sender: Mapped[str] = mapped_column(VARCHAR(128), nullable=False)
+    recipient: Mapped[str] = mapped_column(VARCHAR(128), nullable=False)
+    amount: Mapped[float] = mapped_column(Float(), nullable=False)
     timestamp: Mapped[datetime] = mapped_column(TIMESTAMP(), nullable=False, server_default=func.now())
 
     block: Mapped["Block"] = relationship(back_populates="transactions")
